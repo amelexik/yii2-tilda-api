@@ -63,7 +63,6 @@ class TildaExportPage
         $page->setAttributes([
             'page_id' => $this->pageID,
             'project_id' => $this->projectID,
-            'published' => true,
             'title' => $this->title,
             'html' => $this->html,
             'alias' => $this->alias,
@@ -103,7 +102,7 @@ class TildaExportPage
             }
         }
 
-        \console\components\BaseQueue::checkConnection();
+        self::checkConnection();
 
         $savedPage->replaceImg($replaceFrom, $replaceTo);
         $savedPage->save();
