@@ -72,6 +72,8 @@ class TildaExportPage
             $this->saveCSS($page);
             $this->saveJS($page);
             $this->saveIMG($page);
+        } else {
+            \Yii::warning($page->getErrors(), 'yii2-tilda-api');
         }
     }
 

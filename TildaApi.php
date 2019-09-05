@@ -165,8 +165,11 @@ class TildaApi extends Component
                     'projectid' => $request->data['result']['projectid']
                 ])->send();
 
-            if (isset($request->data['status']) && $request->data['status'] == self::API_STATUS_SUCCESS) {
+            if (isset($projectRequest->data['status']) && $projectRequest->data['status'] == self::API_STATUS_SUCCESS) {
                 $this->pageObj = new TildaExportPage($request->data['result'], $projectRequest->data['result'], $this->assetsPath, $this->assetsUrl);
+                
+            } elseif (isset($projectRequest->data['status']) && $projectRequest->data['status'] == self::API_STATUS_ERROR) {
+                \Yii::warning($projectRequest->data['message'], 'yii2-tilda-api');
             }
         } elseif (isset($request->data['status']) && $request->data['status'] == self::API_STATUS_ERROR) {
             \Yii::warning($request->data['message'], 'yii2-tilda-api');
